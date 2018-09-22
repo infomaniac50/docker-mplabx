@@ -1,11 +1,14 @@
-mplab_ide:
-  build: .
-  container_name: mplab-ide
-  extends:
-    file: common.yml
-    service: x11
-  user: "1000:100"
-  environment:
-    HOME: /home/developer
-  volumes:
+services:
+  mplab_ide:
+    build:
+      context: .
+    container_name: mplab-ide
+    extends:
+      file: common.yml
+      service: x11
+    environment:
+      HOME: /home/developer
+    user: 1000:100
+    volumes:
     - ./home:/home/developer:rw
+version: '2.1'
