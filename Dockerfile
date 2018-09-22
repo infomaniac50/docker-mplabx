@@ -11,13 +11,15 @@ RUN dpkg --add-architecture i386 \
     libx11-6:i386 libxext6:i386 libstdc++6:i386 libexpat1:i386 \
     libxext6 libxrender1 libxtst6 libgtk2.0-0 libxslt1.1
 
+ENV XC16_VERSION 1.25
+
 # Download and install XC16 compiler
-RUN curl -fSL -A "Mozilla/4.0" -o /tmp/xc16.run "http://www.microchip.com/mplabxc16linux" \
+RUN curl -fSL -A "Mozilla/4.0" -o /tmp/xc16.run "http://ww1.microchip.com/downloads/en/DeviceDoc/xc16-v${XC16_VERSION}-full-install-linux-installer.run" \
     && chmod a+x /tmp/xc16.run \
     && /tmp/xc16.run --mode unattended --unattendedmodeui none \
         --netservername localhost --LicenseType FreeMode \
     && rm /tmp/xc16.run
-ENV PATH /opt/microchip/xc16/v1.25/bin:$PATH
+ENV PATH /opt/microchip/xc16/v${XC16_VERSION}/bin:$PATH
 
 ENV MPLABX_VERSION 3.20
 
