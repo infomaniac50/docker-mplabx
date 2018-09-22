@@ -33,4 +33,8 @@ RUN curl -fSL -A "Mozilla/4.0" -o /tmp/mplabx-installer.tar "http://ww1.microchi
 
 VOLUME ["/tmp/.X11-unix"]
 
-CMD ["/usr/bin/mplab_ide"]
+USER 1000:100
+
+WORKDIR /home/developer
+
+CMD ["/usr/bin/mplab_ide", "--userdir", "/home/developer/.mplab_ide", "--cachedir", "/home/developer/.cache/mplab_ide"]
